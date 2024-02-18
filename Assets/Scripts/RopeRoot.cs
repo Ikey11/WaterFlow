@@ -39,7 +39,7 @@ public class RopeRoot : MonoBehaviour {
             var childRigidbody = representative.gameObject.AddComponent<Rigidbody>();
             childRigidbody.useGravity = true;
             childRigidbody.isKinematic = false;
-            childRigidbody.freezeRotation = true;
+            childRigidbody.freezeRotation = false;
             childRigidbody.mass = RigidbodyMass;
 
             //collider
