@@ -57,8 +57,8 @@ public class scr_PlayerController : MonoBehaviour
     void pickUp()
     {
         RaycastHit ray;
-        Debug.Log("Attempting pickup");
-        if (Physics.Raycast(cameraBody.position, transform.forward, out ray, 100f))
+        Debug.Log("Attempting pickup, " + cameraBody.forward);
+        if (Physics.Raycast(cameraBody.position, cameraBody.forward, out ray, 100f))
         {
             //if (ray.transform) { }
             GameObject item = ray.transform.gameObject;
@@ -66,7 +66,9 @@ public class scr_PlayerController : MonoBehaviour
             if(item.tag == "Grabbable")
             {
                 Debug.Log("This item should get picked up!");
+                item.GetComponent<scr_GrabbableController>().grabbed = true;
             }
         }
+        //Debug.DrawRay(cameraBody.position, cameraBody.forward, Color.green, 100f);
     }
 }
