@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class scr_GrabbableController : MonoBehaviour
 {
-    public Rigidbody rbSelf;
+    private Rigidbody rbSelf;
     public Transform cameraBody;
     public bool grabbed;
     public bool gravOn = true;
@@ -14,9 +14,9 @@ public class scr_GrabbableController : MonoBehaviour
     public float adjustSpeed = 10f;
     Vector3 goal;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        rbSelf = gameObject.GetComponent<Rigidbody>();
         grabbed = false;
     }
 

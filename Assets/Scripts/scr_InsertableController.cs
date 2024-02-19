@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class scr_InsertableController : MonoBehaviour
 {
-    public Rigidbody rbSelf;
-    public scr_GrabbableController GrabControl;
+    private Rigidbody rbSelf;
+    private scr_GrabbableController GrabControl;
     public bool inserted = false;
     Vector3 insertionLocation;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        rbSelf = gameObject.GetComponent<Rigidbody>();
+        GrabControl = gameObject.GetComponent<scr_GrabbableController>();
+    }
+
     void Update()
     {
         if (inserted && !GrabControl.grabbed)
