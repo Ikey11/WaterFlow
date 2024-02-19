@@ -9,6 +9,7 @@ public class scr_GrabbableController : MonoBehaviour
     public Rigidbody rbSelf;
     public Transform cameraBody;
     public bool grabbed;
+    public bool gravOn = true;
     public float distance = 1.2f;
     public float adjustSpeed = 10f;
     Vector3 goal;
@@ -24,14 +25,16 @@ public class scr_GrabbableController : MonoBehaviour
     {
         if (grabbed)
         {
+            Debug.Log("I'm grabbed!");
             rbSelf.useGravity = false;
+            rbSelf.freezeRotation = false;
             goal = cameraBody.position + new Vector3(cameraBody.forward.x * distance, cameraBody.forward.y * distance, cameraBody.forward.z * distance);
-            Debug.Log("Getting grabbed! " + Vector3.Lerp(transform.position, goal, adjustSpeed * Time.deltaTime) + "/" + goal);
+            //Debug.Log("Getting grabbed! " + Vector3.Lerp(transform.position, goal, adjustSpeed * Time.deltaTime) + "/" + goal);
             transform.position = Vector3.Lerp(transform.position, goal, adjustSpeed * Time.deltaTime);
             //transform.position = Vector3.MoveTowards(transform.position, goal, adjustSpeed * Time.deltaTime);
             //transform.position = goal;
         }
-        else 
+        else if(gravOn)
         {
             rbSelf.useGravity = true;
         }

@@ -47,7 +47,16 @@ public class scr_PlayerController : MonoBehaviour
         prevFM = forwardMovement;
         prevSM = sideMovement;
 
-        if (Input.GetMouseButtonDown(0))
+        if (grabObject != null)
+        {
+            if (grabObject.GetComponent<scr_GrabbableController>().grabbed == false)
+            {
+                Debug.Log("Object dropped!");
+                grabObject = null;
+            }
+        }
+
+            if (Input.GetMouseButtonDown(0))
         {
             if (grabObject == null)
             {
@@ -66,8 +75,9 @@ public class scr_PlayerController : MonoBehaviour
     void pickUp()
     {
         RaycastHit ray;
+        int layerMask = 1 << 6;
         Debug.Log("Attempting pickup, " + cameraBody.forward);
-        if (Physics.Raycast(cameraBody.position, cameraBody.forward, out ray, 100f))
+        if (Physics.Raycast(cameraBody.position, cameraBody.forward, out ray, 100f, layerMask))
         {
             //if (ray.transform) { }
             GameObject item = ray.transform.gameObject;
