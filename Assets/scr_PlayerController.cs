@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 
 public class scr_PlayerController : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class scr_PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+
         prevFM = 0f;
         prevSM = 0f;
     }
@@ -76,17 +78,22 @@ public class scr_PlayerController : MonoBehaviour
     {
         RaycastHit ray;
         int layerMask = 1 << 6;
-        Debug.Log("Attempting pickup, " + cameraBody.forward);
+        Debug.Log("scr_PlayerController: Attempting interact, " + cameraBody.forward);
         if (Physics.Raycast(cameraBody.position, cameraBody.forward, out ray, 100f, layerMask))
         {
             //if (ray.transform) { }
             GameObject item = ray.transform.gameObject;
-            Debug.Log("object pick up attempted");
-            if(item.tag == "Grabbable")
+            Debug.Log("scr_PlayerController: Item Found");
+            if (item.tag == "Grabbable")
             {
-                Debug.Log("This item should get picked up!");
+                Debug.Log("scr_PlayerController: Attempting to Grab!");
                 item.GetComponent<scr_GrabbableController>().grabStatusUpdate(cameraBody, true);
                 grabObject = item;
+            }
+            else if (item.tag == "Switch")
+            {
+                Debug.Log("scr_PlayerController: Attempting to switch!");
+                item.GetComponent<scr_SwitchController>().ToggleSwitch();
             }
         }
         //Debug.DrawRay(cameraBody.position, cameraBody.forward, Color.green, 100f);
