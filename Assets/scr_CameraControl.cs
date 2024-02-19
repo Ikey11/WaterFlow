@@ -5,6 +5,7 @@ using UnityEngine;
 public class scr_CameraControl : MonoBehaviour
 {
     public Transform cameraBody;
+    public Transform playerBody;
     float cameraRotX = 0f;
     float cameraRotY = 0f;
     public float sensitivity = 5f;
@@ -22,6 +23,7 @@ public class scr_CameraControl : MonoBehaviour
         cameraRotX -= Input.GetAxis("Mouse Y") * sensitivity;
         cameraRotX = Mathf.Max(-90, Mathf.Min(90, cameraRotX));
         //cameraBody.rotation = new Quaternion(cameraRotX, cameraRotY, 0, cameraBody.rotation.w);
-        transform.localEulerAngles = new Vector3(cameraRotX, cameraRotY, 0);
+        playerBody.localEulerAngles = new Vector3(0, cameraRotY, 0);
+        transform.localEulerAngles = new Vector3(cameraRotX, 0, 0);
     }
 }
