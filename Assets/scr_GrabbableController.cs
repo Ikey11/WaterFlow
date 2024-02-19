@@ -16,7 +16,7 @@ public class scr_GrabbableController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        grabbed = false;
     }
 
     // Update is called once per frame
@@ -36,5 +36,11 @@ public class scr_GrabbableController : MonoBehaviour
             rbSelf.useGravity = true;
         }
 
+    }
+
+    public void grabStatusUpdate(Transform cam, bool status)
+    {
+        grabbed = status;
+        cameraBody = cam;
     }
 }

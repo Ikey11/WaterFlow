@@ -12,6 +12,7 @@ public class scr_PlayerController : MonoBehaviour
     public float moveSpeed = 2.5f;
     public float maxSpeed = 5f;
     public Transform cameraBody;
+    public GameObject grabObject = null;
     float prevFM;
     float prevSM;
 
@@ -48,7 +49,15 @@ public class scr_PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            pickUp();
+            if (grabObject == null)
+            {
+                pickUp();
+            }
+            else
+            {
+                dropOff();
+            }
+
         }
 
         //Debug.Log(rbSelf.GetAccumulatedForce() + "," + forwardMovement);
@@ -66,9 +75,16 @@ public class scr_PlayerController : MonoBehaviour
             if(item.tag == "Grabbable")
             {
                 Debug.Log("This item should get picked up!");
-                item.GetComponent<scr_GrabbableController>().grabbed = true;
+                item.GetComponent<scr_GrabbableController>().grabStatusUpdate(cameraBody, true);
+                grabObject = item;
             }
         }
         //Debug.DrawRay(cameraBody.position, cameraBody.forward, Color.green, 100f);
+    }
+    
+    void dropOff()
+    {
+        grabObject.GetComponent<scr_GrabbableController>().grabbed = false;
+        grabObject = null;
     }
 }
