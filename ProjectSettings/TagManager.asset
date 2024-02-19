@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grabbable
   - Switch
+  - PipeInsert
   layers:
   - Default
   - TransparentFX

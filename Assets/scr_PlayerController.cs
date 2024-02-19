@@ -12,6 +12,7 @@ public class scr_PlayerController : MonoBehaviour
     public float moveSpeed = 2.5f;
     public float maxSpeed = 5f;
     public Transform cameraBody;
+    public GameObject grabObject = null;
     float prevFM;
     float prevSM;
 
@@ -48,9 +49,26 @@ public class scr_PlayerController : MonoBehaviour
         prevFM = forwardMovement;
         prevSM = sideMovement;
 
-        if (Input.GetMouseButtonDown(0))
+        if (grabObject != null)
         {
-            pickUp();
+            if (grabObject.GetComponent<scr_GrabbableController>().grabbed == false)
+            {
+                Debug.Log("Object dropped!");
+                grabObject = null;
+            }
+        }
+
+            if (Input.GetMouseButtonDown(0))
+        {
+            if (grabObject == null)
+            {
+                pickUp();
+            }
+            else
+            {
+                dropOff();
+            }
+
         }
 
         //Debug.Log(rbSelf.GetAccumulatedForce() + "," + forwardMovement);
@@ -59,8 +77,9 @@ public class scr_PlayerController : MonoBehaviour
     void pickUp()
     {
         RaycastHit ray;
+        int layerMask = 1 << 6;
         Debug.Log("scr_PlayerController: Attempting interact, " + cameraBody.forward);
-        if (Physics.Raycast(cameraBody.position, cameraBody.forward, out ray, 100f))
+        if (Physics.Raycast(cameraBody.position, cameraBody.forward, out ray, 100f, layerMask))
         {
             //if (ray.transform) { }
             GameObject item = ray.transform.gameObject;
@@ -68,7 +87,8 @@ public class scr_PlayerController : MonoBehaviour
             if (item.tag == "Grabbable")
             {
                 Debug.Log("scr_PlayerController: Attempting to Grab!");
-                item.GetComponent<scr_GrabbableController>().grabbed = true;
+                item.GetComponent<scr_GrabbableController>().grabStatusUpdate(cameraBody, true);
+                grabObject = item;
             }
             else if (item.tag == "Switch")
             {
@@ -77,5 +97,11 @@ public class scr_PlayerController : MonoBehaviour
             }
         }
         //Debug.DrawRay(cameraBody.position, cameraBody.forward, Color.green, 100f);
+    }
+    
+    void dropOff()
+    {
+        grabObject.GetComponent<scr_GrabbableController>().grabbed = false;
+        grabObject = null;
     }
 }
