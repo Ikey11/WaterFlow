@@ -6,16 +6,32 @@ public class scr_SwitchController : MonoBehaviour
 {
     [SerializeField] DoorBehavior _db;
 
-    public bool switchActive = false;
+    Animator _animator;
+
+    public bool _switchActive = false;
 
     [Tooltip("Time Taken before switch takes effect")]
     public float _switchDelay = 0.2f;
 
+    void Start()
+    {
+        _animator = gameObject.GetComponent<Animator>();
+    }
+
     public void ToggleSwitch()
     {
-        switchActive = !switchActive;
+        Debug.Log("scr_SwitchController: Switch at " + transform.position + " toggling to: " + !_switchActive);
+        _switchActive = !_switchActive;
 
-        new WaitForSeconds(_switchDelay);
-        _db._isDoorOpen = switchActive;
+        // Play animation   
+        _animator.SetBool("Toggled", _switchActive);
+        
+        StartCoroutine(OpenDoor(_switchDelay));
     }
+
+    IEnumerator OpenDoor(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        _db._isDoorOpen = _switchActive;
+    }   
 }

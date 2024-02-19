@@ -13,8 +13,7 @@ public class DoorBehavior : MonoBehaviour
     void Awake()
     {
         _doorClosePos = transform.position;
-        _doorOpenPos = new Vector3(transform.position.x + _offset.x, 
-            transform.position.y + _offset.y, transform.position.z + _offset.z);
+        _doorOpenPos = transform.position + _offset;
     }
 
     void Update()
