@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Grabbables
+  - 
   - Player
   - 
   - 
@@ -26,8 +26,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Grabbables
+  - ToggleSwitch
   - 
   - 
   - 

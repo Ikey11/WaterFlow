@@ -63,10 +63,15 @@ public class scr_PlayerController : MonoBehaviour
             //if (ray.transform) { }
             GameObject item = ray.transform.gameObject;
             Debug.Log("object pick up attempted");
-            if(item.tag == "Grabbable")
+            if (item.tag == "Grabbable")
             {
-                Debug.Log("This item should get picked up!");
+                Debug.Log("scr_PlayerController: Attempting to Grab!");
                 item.GetComponent<scr_GrabbableController>().grabbed = true;
+            }
+            else if (item.tag == "ToggleSwitch")
+            {
+                Debug.Log("scr_PlayerController: Attempting to switch!");
+                item.GetComponent<scr_SwitchController>().ToggleSwitch();
             }
         }
         //Debug.DrawRay(cameraBody.position, cameraBody.forward, Color.green, 100f);
