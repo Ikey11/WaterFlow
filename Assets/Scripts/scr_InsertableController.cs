@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class scr_InsertableController : MonoBehaviour
 {
+    public bool inserted = false;
+    
+    [Header("Lock Target Corrections")]
+    public Vector3 _offset;
+    public Vector3 _rotation;
+
     private Rigidbody rbSelf;
     private scr_GrabbableController GrabControl;
-    public bool inserted = false;
     Vector3 insertionLocation;
 
     void Awake()
@@ -32,9 +37,9 @@ public class scr_InsertableController : MonoBehaviour
             inserted = true;
             GrabControl.grabbed = false;
             GrabControl.gravOn = false;
-            transform.position = thing.transform.position;
-            insertionLocation = thing.transform.position;
-            transform.rotation = new Quaternion(0, 0, 0, 0);
+            transform.position = thing.transform.position + _offset;
+            insertionLocation = thing.transform.position + _offset;
+            transform.rotation.SetLookRotation(_rotation);
             rbSelf.freezeRotation = true;
             rbSelf.AddForce(-rbSelf.GetAccumulatedForce());
         }
