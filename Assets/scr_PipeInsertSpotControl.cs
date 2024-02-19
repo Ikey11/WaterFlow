@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_PipeInsertSpotControl : MonoBehaviour
 {
-    public Quaternion pipeRotation;
+    public Vector3 pipeRotation;
     public string requiredPipeType = "default";
     public bool filled = false;
     public bool working = false;

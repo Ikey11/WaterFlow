@@ -38,7 +38,7 @@ public class scr_InsertableController : MonoBehaviour
                 transform.position = thing.transform.position;
                 insertionLocation = thing.transform.position;
                 thing.GetComponent<scr_PipeInsertSpotControl>().UpdateInsertion(pipeType);
-                transform.rotation = thing.GetComponent<scr_PipeInsertSpotControl>().pipeRotation;
+                transform.localEulerAngles = thing.GetComponent<scr_PipeInsertSpotControl>().pipeRotation;
                 rbSelf.freezeRotation = true;
                 rbSelf.AddForce(-rbSelf.GetAccumulatedForce());
             }
