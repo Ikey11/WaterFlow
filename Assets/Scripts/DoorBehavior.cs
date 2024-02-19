@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorBehavior : MonoBehaviour
 {
     public bool _isDoorOpen = false;
-    public float _offset = 3f;
+    public Vector3 _offset;
     Vector3 _doorClosePos;
     Vector3 _doorOpenPos;
     float _doorSpeed = 10f;
@@ -13,8 +13,8 @@ public class DoorBehavior : MonoBehaviour
     void Awake()
     {
         _doorClosePos = transform.position;
-        _doorOpenPos = new Vector3(transform.position.x, 
-            transform.position.y + _offset, transform.position.z);
+        _doorOpenPos = new Vector3(transform.position.x + _offset.x, 
+            transform.position.y + _offset.y, transform.position.z + _offset.z);
     }
 
     void Update()
