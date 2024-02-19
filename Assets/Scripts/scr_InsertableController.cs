@@ -7,6 +7,7 @@ public class scr_InsertableController : MonoBehaviour
     private Rigidbody rbSelf;
     private scr_GrabbableController GrabControl;
     public bool inserted = false;
+    public string pipeType = "default";
     Vector3 insertionLocation;
 
     void Awake()
@@ -28,22 +29,30 @@ public class scr_InsertableController : MonoBehaviour
         Debug.Log("Entered trigger");
         if (GrabControl.grabbed && inserted == false && thing.tag == "PipeInsert") //When grabbed and put into a pipe insert
         {
-            Debug.Log("Begin lock!");
-            inserted = true;
-            GrabControl.grabbed = false;
-            GrabControl.gravOn = false;
-            transform.position = thing.transform.position;
-            insertionLocation = thing.transform.position;
-            transform.rotation = new Quaternion(0, 0, 0, 0);
-            rbSelf.freezeRotation = true;
-            rbSelf.AddForce(-rbSelf.GetAccumulatedForce());
+            if (thing.GetComponent<scr_PipeInsertSpotControl>().filled == false)
+            {
+                Debug.Log("Begin lock!");
+                inserted = true;
+                GrabControl.grabbed = false;
+                GrabControl.gravOn = false;
+                transform.position = thing.transform.position;
+                insertionLocation = thing.transform.position;
+                thing.GetComponent<scr_PipeInsertSpotControl>().UpdateInsertion(pipeType);
+                transform.rotation = thing.GetComponent<scr_PipeInsertSpotControl>().pipeRotation;
+                rbSelf.freezeRotation = true;
+                rbSelf.AddForce(-rbSelf.GetAccumulatedForce());
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider thing)
     {
-        Debug.Log("Exited trigger");
-        inserted = false;
-        GrabControl.gravOn = true;
+        if (thing.tag == "PipeInsert" && inserted == true)
+        {
+            Debug.Log("Exited trigger");
+            thing.GetComponent<scr_PipeInsertSpotControl>().Removal();
+            inserted = false;
+            GrabControl.gravOn = true;
+        }
     }
 }
