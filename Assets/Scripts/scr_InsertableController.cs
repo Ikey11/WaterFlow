@@ -7,10 +7,6 @@ public class scr_InsertableController : MonoBehaviour
     public bool inserted = false;
     public string pipeType = "default";
     
-    [Header("Lock Target Corrections")]
-    public Vector3 _offset;
-    public Vector3 _rotation;
-
     private Rigidbody rbSelf;
     private scr_GrabbableController GrabControl;
     Vector3 insertionLocation;
