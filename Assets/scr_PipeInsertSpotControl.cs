@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class scr_PipeInsertSpotControl : MonoBehaviour
 {
+    public AudioSource audioSound;
     public Vector3 pipeRotation;
     public string requiredPipeType = "default";
     public bool filled = false;
@@ -21,7 +22,7 @@ public class scr_PipeInsertSpotControl : MonoBehaviour
             filled = true;
             working = false;
         }
-
+        audioSound.Play();
     }
 
     public void Removal() 
