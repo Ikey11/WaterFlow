@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class scr_InsertableController : MonoBehaviour
 {
-    private Rigidbody rbSelf;
-    private scr_GrabbableController GrabControl;
     public bool inserted = false;
     public string pipeType = "default";
+    
+    private Rigidbody rbSelf;
+    private scr_GrabbableController GrabControl;
     Vector3 insertionLocation;
 
     void Awake()
