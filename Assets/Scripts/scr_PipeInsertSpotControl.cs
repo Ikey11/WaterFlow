@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class scr_PipeInsertSpotControl : MonoBehaviour
 {
-    public AudioSource audioSound;
     public Vector3 pipeRotation;
     public string requiredPipeType = "default";
     public bool filled = false;
     public bool working = false;
+    
+    private AudioSource audioSound;
+
+
+    void Awake()
+    {
+        audioSound = gameObject.GetComponent<AudioSource>();
+    }
 
     public void UpdateInsertion(string pipeType)
     {
