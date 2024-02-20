@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbSelf: {fileID: 7721885770620131443}
-  moveSpeed: 2.5
+  moveSpeed: 20
   maxSpeed: 5
   cameraBody: {fileID: 2165363848271142400}
   grabObject: {fileID: 0}

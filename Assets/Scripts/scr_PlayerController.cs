@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 //using UnityEngine.UIElements;
 
@@ -15,6 +15,8 @@ public class scr_PlayerController : MonoBehaviour
     public GameObject grabObject = null;
     float prevFM;
     float prevSM;
+    float forwardMovement;
+    float sideMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +32,8 @@ public class scr_PlayerController : MonoBehaviour
     {
         //transform.localEulerAngles = new Vector3(0, cameraTransform.rotation.y, 0);
 
-        float forwardMovement = Input.GetAxis("Vertical");
-        float sideMovement = Input.GetAxis("Horizontal");
+        forwardMovement = Input.GetAxis("Vertical");
+        sideMovement = Input.GetAxis("Horizontal");
 
         /**
         if (prevFM < forwardMovement && prevSM < sideMovement)
@@ -41,6 +43,8 @@ public class scr_PlayerController : MonoBehaviour
         else
         {
         **/
+
+        /**
         Vector3 movedirection = forwardMovement * transform.forward + sideMovement * transform.right;
         //if(rbSelf.GetAccumulatedForce().x + rbSelf.GetAccumulatedForce().y < maxSpeed)
         rbSelf.AddForce(movedirection.normalized * moveSpeed, ForceMode.Force);
@@ -48,6 +52,7 @@ public class scr_PlayerController : MonoBehaviour
 
         prevFM = forwardMovement;
         prevSM = sideMovement;
+        **/
 
         if (grabObject != null)
         {
@@ -72,6 +77,17 @@ public class scr_PlayerController : MonoBehaviour
         }
 
         //Debug.Log(rbSelf.GetAccumulatedForce() + "," + forwardMovement);
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 movedirection = forwardMovement * transform.forward + sideMovement * transform.right;
+        //if(rbSelf.GetAccumulatedForce().x + rbSelf.GetAccumulatedForce().y < maxSpeed)
+        rbSelf.AddForce(movedirection.normalized * moveSpeed, ForceMode.Force);
+        //}
+
+        prevFM = forwardMovement;
+        prevSM = sideMovement;
     }
 
     void pickUp()
