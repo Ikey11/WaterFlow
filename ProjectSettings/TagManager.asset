@@ -8,6 +8,7 @@ TagManager:
   - Switch
   - PipeInsert
   - Exit
+  - death zone
   layers:
   - Default
   - TransparentFX

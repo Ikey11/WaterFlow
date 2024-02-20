@@ -1084,6 +1084,73 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1276313404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1276313407}
+  - component: {fileID: 1276313406}
+  - component: {fileID: 1276313405}
+  m_Layer: 0
+  m_Name: Death Plane
+  m_TagString: death zone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1276313405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276313404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d1fa912f564b04c8722f87cfb9d470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocation: {x: 0, y: 0, z: 0}
+--- !u!65 &1276313406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276313404}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 5, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1276313407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276313404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -16.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1296426848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1643,11 +1710,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1059161342447140727, guid: 746dd7892894bb74b8d8042a1aa4bc76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.17
       objectReference: {fileID: 0}
     - target: {fileID: 1059161342447140727, guid: 746dd7892894bb74b8d8042a1aa4bc76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -7.2
       objectReference: {fileID: 0}
     - target: {fileID: 1059161342447140727, guid: 746dd7892894bb74b8d8042a1aa4bc76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1705,3 +1772,4 @@ SceneRoots:
   - {fileID: 1701480695}
   - {fileID: 2634136037008435749}
   - {fileID: 6780077683190570819}
+  - {fileID: 1276313407}

@@ -111,6 +111,11 @@ public class scr_PlayerController : MonoBehaviour
         {
             thing.GetComponent<scr_exitScene>().changeScene();
         }
+        else if(thing.tag == "death zone")
+        {
+            //Debug.Log("Entered death plane");
+            thing.GetComponent<scr_DeathPlane>().respawn(transform);
+        }
     }
 
 }
