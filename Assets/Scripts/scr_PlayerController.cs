@@ -104,4 +104,18 @@ public class scr_PlayerController : MonoBehaviour
         grabObject.GetComponent<scr_GrabbableController>().grabbed = false;
         grabObject = null;
     }
+
+    void OnTriggerEnter(Collider thing)
+    {
+        if(thing.tag == "Exit")
+        {
+            thing.GetComponent<scr_exitScene>().changeScene();
+        }
+        else if(thing.tag == "death zone")
+        {
+            //Debug.Log("Entered death plane");
+            thing.GetComponent<scr_DeathPlane>().respawn(transform);
+        }
+    }
+
 }

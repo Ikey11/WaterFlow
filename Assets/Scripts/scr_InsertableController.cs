@@ -44,6 +44,11 @@ public class scr_InsertableController : MonoBehaviour
                 rbSelf.AddForce(-rbSelf.GetAccumulatedForce());
             }
         }
+        else if (thing.tag == "death zone")
+        {
+            //Debug.Log("Entered death plane");
+            thing.GetComponent<scr_DeathPlane>().respawn(transform);
+        }
     }
 
     private void OnTriggerExit(Collider thing)
