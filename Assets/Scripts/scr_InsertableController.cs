@@ -5,6 +5,7 @@ using UnityEngine;
 public class scr_InsertableController : MonoBehaviour
 {
     public bool inserted = false;
+    public string pipeType = "default";
     
     [Header("Lock Target Corrections")]
     public Vector3 _offset;
@@ -12,8 +13,6 @@ public class scr_InsertableController : MonoBehaviour
 
     private Rigidbody rbSelf;
     private scr_GrabbableController GrabControl;
-    public bool inserted = false;
-    public string pipeType = "default";
     Vector3 insertionLocation;
 
     void Awake()
